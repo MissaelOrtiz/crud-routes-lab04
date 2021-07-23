@@ -30,4 +30,12 @@ describe('item CRUD routes', () => {
 
     expect(res.body).toEqual([item1, item2]);
   });
+
+  it('updates an item by id via PUT', async () => {
+    const star = { name: 'sword of stars', type: 'sword' };
+    const item = await Item.insert({ name: 'sword of flames', type: 'weapon' });
+    const res = await (await request(app).put(`/api/v1/items/${item.id}`)).setEncoding(star);
+
+    expect(res.body).toEqual({ id: '1', ...star });
+  });
 });

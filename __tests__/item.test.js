@@ -38,4 +38,11 @@ describe('item CRUD routes', () => {
 
     expect(res.body).toEqual({ id: '1', ...star });
   });
+
+  it('deletes an item by id via DELETE', async () => {
+    const item = await Item.insert({ name: 'sword of flames', type: 'weapon' });
+    const res = await request(app).delete(`/api/v1/items/${item.id}`);
+
+    expect(res.body).toEqual({ message: `${item.name} has been destroyed` });
+  });
 });

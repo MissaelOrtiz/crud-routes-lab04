@@ -31,4 +31,11 @@ describe('foe CRUD routes', () => {
 
     expect(res.body).toEqual([foe1, foe2, foe3]);
   });
+  it('updates a foe by id via PUT', async () => {
+    const hob = { name: 'hobgoblin', level: 1 };
+    const foe = await Foe.insert({ name: 'goblin', level: 1 });
+    const res = await request(app).put(`/api/v1/foes/${foe.id}`).send(hob);
+
+    expect(res.body).toEqual(hob);
+  });
 });

@@ -39,4 +39,11 @@ describe('drink CRUD routes', () => {
 
     expect(res.body).toEqual({ id: '1', ...screwdriver });
   });
+
+  it('deletes a drink by id via DELETE', async () => {
+    const drink = await Drink.insert({ name: 'mead', flavor: 'sweet', adult: true });
+    const res = await request(app).delete(`/api/v1/drinks/${drink.id}`);
+
+    expect(res.body).toEqual({ message: `This cup is empty of ${drink.name}` });
+  });
 });

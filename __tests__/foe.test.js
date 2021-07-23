@@ -15,4 +15,11 @@ describe('foe CRUD routes', () => {
 
     expect(res.body).toEqual({ id: '1', ...foe });
   });
+
+  it('gets a foe by id via GET', async () => {
+    const foe = await Foe.insert({ name: 'goblin', level: 1 });
+    const res = await request(app).get(`/api/v1/foes/${foe.id}`);
+
+    expect(res.body).toEqual(foe);
+  });
 });

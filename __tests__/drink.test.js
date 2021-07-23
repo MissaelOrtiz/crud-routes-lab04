@@ -22,4 +22,13 @@ describe('drink CRUD routes', () => {
 
     expect(res.body).toEqual(drink);
   });
+
+  it('gets all drinks via GET', async () => {
+    const drink1 = await Drink.insert({ name: 'mead', flavor: 'sweet', adult: true });
+    const drink2 = await Drink.insert({ name: 'orange juice', flavor: 'sweet/tart', adult: false });
+    const drink3 = await Drink.insert({ name: 'water', flavor: 'neutral', adult: false });
+    const res = await request(app).get('/api/v1/drinks');
+
+    expect(res.body).toEqual([drink1, drink2, drink3]);
+  });
 });

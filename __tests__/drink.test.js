@@ -15,4 +15,11 @@ describe('drink CRUD routes', () => {
 
     expect(res.body).toEqual({ id: '1', ...drink });
   });
+
+  it('gets a drink by id via GET', async () => {
+    const drink = await Drink.insert({ name: 'mead', flavor: 'sweet', adult: true });
+    const res = await request(app).get(`/api/v1/drinks/${drink.id}`);
+
+    expect(res.body).toEqual(drink);
+  });
 });

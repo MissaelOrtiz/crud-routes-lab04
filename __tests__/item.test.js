@@ -22,4 +22,12 @@ describe('item CRUD routes', () => {
 
     expect(res.body).toEqual(item);
   });
+
+  it('gets all items via GET', async () => {
+    const item1 = await Item.insert({ name: 'sword of flames', type: 'weapon' });
+    const item2 = await Item.insert({ name: 'ring of cryos', type: 'ring' });
+    const res = await request(app).get('/api/v1/foes');
+
+    expect(res.body).toEqual([item1, item2]);
+  });
 });

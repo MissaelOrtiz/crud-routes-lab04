@@ -36,6 +36,6 @@ describe('foe CRUD routes', () => {
     const foe = await Foe.insert({ name: 'goblin', level: 1 });
     const res = await request(app).put(`/api/v1/foes/${foe.id}`).send(hob);
 
-    expect(res.body).toEqual(hob);
+    expect(res.body).toEqual({ id: '1', ...hob });
   });
 });

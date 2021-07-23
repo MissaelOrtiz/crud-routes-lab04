@@ -15,4 +15,11 @@ describe('item CRUD routes', () => {
 
     expect(res.body).toEqual({ id: '1', ...item });
   });
+
+  it('gets an item by id via GET', async () => {
+    const item = await Item.insert({ name: 'sword of flames', type: 'weapon ' });
+    const res = await request(app).get(`/api/v1/items/${item.id}`);
+
+    expect(res.body).toEqual(item);
+  });
 });

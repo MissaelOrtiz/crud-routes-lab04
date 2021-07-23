@@ -22,4 +22,13 @@ describe('foe CRUD routes', () => {
 
     expect(res.body).toEqual(foe);
   });
+
+  it('gets all foes via GET', async () => {
+    const foe1 = await Foe.insert({ name: 'goblin', level: 1 });
+    const foe2 = await Foe.insert({ name: 'hobgoblin', level: 2 });
+    const foe3 = await Foe.insert({ name: 'dire wolf', level: 3 });
+    const res = await request(app).get('/api/v1/foes');
+
+    expect(res.body).toEqual([foe1, foe2, foe3]);
+  });
 });

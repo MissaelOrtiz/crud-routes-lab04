@@ -2,9 +2,9 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import Movie from '../lib/models/Movie.js';
+// import Movie from '../lib/models/Movie';
 
-describe('movei CRUD routes', async () => {
+describe('movie CRUD routes', () => {
   beforeEach(() => {
     return setup(pool);
   });

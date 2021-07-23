@@ -21,7 +21,7 @@ CREATE TABLE drinks (
   name TEXT NOT NULL,
   flavor TEXT NOT NULL,
   adult BOOLEAN
-)
+);
 
 DROP TABLE IF EXISTS movies;
 

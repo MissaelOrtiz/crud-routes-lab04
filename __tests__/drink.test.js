@@ -31,4 +31,12 @@ describe('drink CRUD routes', () => {
 
     expect(res.body).toEqual([drink1, drink2, drink3]);
   });
+
+  it('updates a drink by id via PUT', async () => {
+    const screwdriver = { name: 'screwdriver', flavor: 'tart', adult: true };
+    const drink = await Drink.insert({ name: 'mead', flavor: 'sweet', adult: true });
+    const res = await request(app).put(`/api/v1/drinks/${drink.id}`).send(screwdriver);
+
+    expect(res.body).toEqual({ id: '1', ...screwdriver });
+  });
 });

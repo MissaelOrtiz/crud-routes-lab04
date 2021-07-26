@@ -30,4 +30,12 @@ describe('avatar CRUD routes', () => {
 
     expect(res.body).toEqual([avatar1, avatar2]);
   });
+
+  it('updates an item by id via PUT', async () => {
+    const correct = { name: 'Aang', element: 'air' };
+    const avatar = await Avatar.insert({ name: 'TAang', element: 'fire' });
+    const res = await request(app).put(`/api/v1/avatars/${avatar.id}`).send(correct);
+
+    expect(res.body).toEqual({ id: '1', ...correct });
+  });
 });

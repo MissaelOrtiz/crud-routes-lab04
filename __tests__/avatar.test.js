@@ -22,4 +22,12 @@ describe('avatar CRUD routes', () => {
 
     expect(res.body).toEqual(avatar);
   });
+
+  it('gets all avatars via GET', async () => {
+    const avatar1 = await Avatar.insert({ name: 'Aang', element: 'air' });
+    const avatar2 = await Avatar.insert({ name: 'Korra', element: 'water' });
+    const res = await request(app).get('/api/v1/avatars');
+
+    expect(res.body).toEqual([avatar1, avatar2]);
+  });
 });

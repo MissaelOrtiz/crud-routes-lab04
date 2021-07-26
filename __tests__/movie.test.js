@@ -22,4 +22,12 @@ describe('movie CRUD routes', () => {
 
     expect(res.body).toEqual(movie);
   });
+
+  it('gets all movies via GET', async () => {
+    const movie1 = await Movie.insert({ name: 'The Ring', genre: 'horro' });
+    const movie2 = await Movie.insert({ name: 'Night of the Living Dead', genre: 'horro' });
+    const res = await request(app).get('/api/v1/movies');
+
+    expect(res.body).toEqual([movie1, movie2]);
+  });
 });

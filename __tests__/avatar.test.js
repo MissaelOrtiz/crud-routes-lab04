@@ -38,4 +38,11 @@ describe('avatar CRUD routes', () => {
 
     expect(res.body).toEqual({ id: '1', ...correct });
   });
+
+  it('deletes an avatar by id via DELETE', async () => {
+    const avatar = await Avatar.insert({ name: 'TAang', element: 'fire' });
+    const res = await request(app).delete(`/api/v1/avatars/${avatar.id}`);
+
+    expect(res.body).toEqual({ message: `${avatar.name} has been reincarnated` });
+  });
 });

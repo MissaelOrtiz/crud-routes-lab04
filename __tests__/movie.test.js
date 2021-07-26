@@ -38,4 +38,11 @@ describe('movie CRUD routes', () => {
 
     expect(res.body).toEqual({ id: '1', ...newMovie });
   });
+
+  it('deletes a movie by id via DELETE', async () => {
+    const movie = await Movie.insert({ name: 'finding nemo', genre: 'animated/family' });
+    const res = await request(app).delete(`/api/v1/movies/${movie.id}`);
+
+    expect(res.body).toEqual({ message: `${movie.name} has been deleted` });
+  });
 });
